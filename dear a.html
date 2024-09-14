@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: pink; /* Pink background */
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Heart animations */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: rotate(45deg);
+            animation: float 5s infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -25px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Random heart positions */
+        .heart:nth-child(1) {
+            left: 10%;
+            animation-duration: 7s;
+        }
+        .heart:nth-child(2) {
+            left: 30%;
+            animation-duration: 8s;
+            animation-delay: 2s;
+        }
+        .heart:nth-child(3) {
+            left: 50%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+        .heart:nth-child(4) {
+            left: 70%;
+            animation-duration: 9s;
+            animation-delay: 3s;
+        }
+        .heart:nth-child(5) {
+            left: 90%;
+            animation-duration: 10s;
+            animation-delay: 5s;
+        }
+
+        /* Container styling */
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #love-message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+        }
+
+        button {
+            background-color: #ff66b2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #ff3385;
+        }
+
+        /* No button moving around */
+        #no-button {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+            font-size: 1em;
+        }
+
+        #no-button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Style for images */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .photo-gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Heart animations -->
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
+    <div class="container">
+        <h1>Do you love me?</h1>
+        <p></p>
+        <button onclick="showLove()">Yes</button>
+        <p id="love-message"></p>
+    </div>
+
+    <!-- No button moving around -->
+    <button id="no-button">No</button>
+
+    <!-- Photo Gallery Section -->
+    <div class="photo-gallery">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="Snapchat-650876348.jpg" alt="Photo 2">
+        <img src="photo2.jpg" alt="Photo 3">
+    </div>
+
+    <script>
+        function showLove() {
+            document.getElementById("love-message").innerHTML = "I love you too, Ayush! 💕";
+        }
+
+        function moveNoButton() {
+            const noButton = document.getElementById("no-button");
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        setInterval(moveNoButton, 2000); // Move every 2 seconds
+    </script>
+</body>
+</html>
